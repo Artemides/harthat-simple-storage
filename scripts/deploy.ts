@@ -6,7 +6,9 @@ const main = async () => {
   const SimpleStorage = await simpleStorageFactory.deploy();
   await SimpleStorage.deployed();
   console.log(`Deployed to ${SimpleStorage.address}`);
-  console.log(`network ${JSON.stringify(network.config)}`);
+
+  network.config && console.log(`network ${JSON.stringify(network.config)}`);
+
   if (
     network.config.chainId === SEPOLIA_CHAIN_ID &&
     process.env.ETHERSCAN_API_KEY
@@ -14,6 +16,9 @@ const main = async () => {
     await SimpleStorage.deployTransaction.wait(6);
     await verify(SimpleStorage.address, []);
   }
+
+  const currentValue = await SimpleStorage.retrieve();
+  console.log(`current valure ${currentValue.toString()}`);
 };
 const verify = async (contractAddress: string, args: []) => {
   try {
@@ -30,6 +35,7 @@ const verify = async (contractAddress: string, args: []) => {
     }
   }
 };
+
 main()
   .then(() => process.exit(0))
   .catch((error) => {

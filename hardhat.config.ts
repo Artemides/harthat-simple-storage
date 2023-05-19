@@ -1,6 +1,9 @@
-import { HardhatUserConfig } from "hardhat/config";
+import { HardhatUserConfig, task } from "hardhat/config";
 import "dotenv/config";
 import "@nomicfoundation/hardhat-toolbox";
+import "./tasks/accounts";
+import "./tasks/balance";
+import "./tasks/block-number";
 
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL!;
 const PK = process.env.PRIVATE_KEY!;
@@ -12,6 +15,9 @@ const config: HardhatUserConfig = {
       url: SEPOLIA_RPC_URL,
       accounts: [PK],
       chainId: 11155111,
+    },
+    localhost: {
+      url: "http://127.0.0.1:8545",
     },
   },
   solidity: "0.8.8",
