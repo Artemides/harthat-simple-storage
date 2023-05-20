@@ -29,9 +29,9 @@ const config: HardhatUserConfig = {
     apiKey: ETHERSCAN_API_KEY,
   },
   gasReporter: {
-    enabled: false,
-    outputFile: "gas-reporter.txt",
-    noColors: true,
+    enabled: true,
+    // outputFile: "gas-reporter.txt",
+    // noColors: true,
     currency: "USD",
     coinmarketcap: COINMARKETCAP_API_KEY,
     // token: "SOL",
