@@ -25,4 +25,17 @@ describe("SimpleStorage", function () {
 
     assert.equal(currentValue.toString(), expectedValue);
   });
+  it("Should add a person and should set the given favorite number", async function () {
+    const name = "Elias";
+    const favoriteNumber = "7";
+    const expectedFavoriteNumber = favoriteNumber;
+    const txResponse = await SimpleStorage.addPerson(name, favoriteNumber);
+    await txResponse.wait(1);
+
+    const currentFavoriteNumber = await SimpleStorage.nameToFavoriteNumber(
+      name
+    );
+
+    assert.equal(currentFavoriteNumber.toString(), expectedFavoriteNumber);
+  });
 });
