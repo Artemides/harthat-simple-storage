@@ -16,4 +16,13 @@ describe("SimpleStorage", function () {
 
     assert.equal(currentValue.toString(), expectedValue);
   });
+
+  it("Should update when calling store", async function () {
+    const expectedValue = "100";
+    const txResponse = await SimpleStorage.store(expectedValue);
+    await txResponse.wait(1);
+    const currentValue = await SimpleStorage.retrieve();
+
+    assert.equal(currentValue.toString(), expectedValue);
+  });
 });

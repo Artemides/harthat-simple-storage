@@ -1,6 +1,7 @@
 import { HardhatUserConfig, task } from "hardhat/config";
 import "dotenv/config";
 import "@nomicfoundation/hardhat-toolbox";
+import "hardhat-gas-reporter";
 import "./tasks/accounts";
 import "./tasks/balance";
 import "./tasks/block-number";
@@ -23,6 +24,9 @@ const config: HardhatUserConfig = {
   solidity: "0.8.8",
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
+  },
+  gasReporter: {
+    enabled: true,
   },
 };
 
